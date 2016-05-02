@@ -1,0 +1,1 @@
+var TheSlot = angular.module('TheSlot', ['ngResource', 'ngSanitize', 'ngAnimate']);

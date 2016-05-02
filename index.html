@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="TheSlot">
+<head>
+	<meta charset="UTF-8">
+	<title>The Slot</title>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="node_modules/angular-route/angular-route.js"></script>    
+    <script src="node_modules/angular-resource/angular-resource.min.js"></script>
+    <script src="node_modules/angular-filters/dist/angular-filters.min.js"></script>
+    <script src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/underscore/underscore.js"></script>
+    
+    <script src="app/main.js"></script>
+    <script src="app/controllers/MainController.js"></script>
+    <script src="app/factories/iconsFactory.js"></script>
+    <script src="app/factories/iconsListsFactory.js"></script>
+    <script src="app/services/getDraws.js"></script>
+    
+    <link rel="stylesheet" href="assets/css/main.css">
+    
+</head>
+<body ng-controller="MainController as main">
+    
+    <header class="main-header">
+        <h1>The Slot</h1>
+    </header>
+    <main>
+        <div id="reels">
+            <div class="loading-panel" ng-if="pageLoading">
+                <div>
+                    <span>Loading...</span>
+                    <img src="/assets/images/loader.gif" alt="">
+                </div>
+            </div>
+            <div id="reel{{reel.id}}" class="reel" ng-repeat="reel in reels" >
+                <div class="results-outer-wrapper">
+                    
+                    <div id="results{{reel.id}}" class="results-inner-wrapper">
+                        <div class="icon-outer-wrapper" ng-repeat="result in reel.results track by $index">
+                            <div class="icon-inner-wrapper">
+                                <img ng-src="{{$parent.$parent.loadedIcons[result]}}" alt="{{result}}">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="animation{{reel.id}}" class="spin-animation results-inner-wrapper">
+                        <img src="/assets/images/spin.png" alt=""><img src="/assets/images/spin.png" alt="">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="buttons-wrapper">
+            <button href="" ng-disabled="spinButton.isDisabled" class="spin-btn" ng-click="slotSpin()">spin</button>
+        </div>
+        
+    </main>	    
+	
+</body>
+</html>
